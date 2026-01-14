@@ -5,7 +5,7 @@
 
 <!-- VIDEO META -->
 [![tipo](https://img.shields.io/badge/tipo-curso%3A%3Aclase-111827?style=flat-square)]()
-[![duración](https://img.shields.io/badge/duración-<NN>min-111827?style=flat-square)]()
+[![duración](https://img.shields.io/badge/duración-10%20min-111827?style=flat-square)]()
 
 
 ## 📄 Resumen
