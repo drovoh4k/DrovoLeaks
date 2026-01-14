@@ -34,7 +34,7 @@ Realmente vamos a explicar todo desde cero y os daré material complementario po
 | # | Clase | Estado |  Duración |
 |---|---|---|---|
 | 01 | [Presentación](modulos/1-Introduccion/1.1-Presentacion/readme.md) | ✅ Publicado | 10 min |
-| 02 | Montando el entorno | ⌛ En progreso | ? min |
+| 02 | [Montando el entorno](modulos/1-Introduccion/1.2-Montando_Entorno/readme.md) | ✅ Publicado | 50 min |
 
 ### Módulo 2: Fundamentos comunes
 

@@ -1,0 +1,9 @@
+{
+    "tipo": "curso::clase",
+    "modulo": "Introducción",
+    "titulo": "Montando el Entorno",
+    "orden": 2,
+    "url": "https://youtu.be/ECUGCOEqbiI?list=PLKYfwBIKMkXfVvUFICiRm-qYUkprfUAL0",
+    "duracion_min": 50,
+    "tags": ["setup"]
+}
