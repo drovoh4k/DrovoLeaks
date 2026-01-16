@@ -12,6 +12,8 @@ La idea es tener todo el conocimiento del canal en un lugar centralizado y orden
 - 📚 [**Cursos**](cursos/readme.md)
     - Contenido estructurado en módulos y clases: enfoque progresivo, con enlaces a playlist y recursos.
 
+- 📝 [**Writeups**](writeups/readme.md)
+  - Resoluciones de retos (crackmes, plataformas y CTFs), con scripts y recursos.
 
 ## ⚠️ Disclaimer
 
