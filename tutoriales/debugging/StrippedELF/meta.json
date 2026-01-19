@@ -1,0 +1,7 @@
+{
+    "tipo": "tutorial",
+    "tema": "debugging",
+    "titulo": "Debuggear binarios stripped con GDB",
+    "tags": ["debugging", "gdb"],
+    "link_video": "https://youtu.be/aR6MLN2pR0g"
+}
