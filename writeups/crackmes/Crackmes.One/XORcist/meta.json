@@ -1,0 +1,13 @@
+{
+	"tipo": "crackme",
+	"fuente": "crackmes.one",
+	"categoria": "reversing",
+	"nombre": "XORcist",
+	"dificultad": "Easy",
+	"arquitectura": "x86-64",
+	"plataforma": "Unix/Linux etc.",
+	"lenguaje": "C/C++",
+	"estado": "Solved",
+	"link_reto": "https://crackmes.one/crackme/684f47bd2b84be7ea774390e",
+	"link_video_writeup": "https://youtu.be/8mgKEaVgMzQ"
+}
