@@ -46,6 +46,11 @@ Realmente vamos a explicar todo desde cero y os daré material complementario po
 - Entender las diferencias entre las diferentes arquitecturas y tener las herramientas para afrontar cualquier arquitectura (aunque sea un MIPS o una ESP32).
 - Presentar una serie de metodologías para analizar código, las cuales aplicaremos en posteriores módulos.
 
+| # | Clase | Estado |  Duración |
+|---|---|---|---|
+| 01 | [Assembly, Von Neumann y Endianness](modulos/2-Fundamentos/2.1-Assembly_VonNeumann_Endianness/readme.md) | ✅ Publicado | 33 min |
+| 02 | ... | ... | ... |
+
 ### Módulo 3: Ruta Linux
 
 > **⚠️ Disclaimer**: Los contenidos pueden verse modificados a lo largo de ejecucción del curso (siempre para ampliar o mejorar).

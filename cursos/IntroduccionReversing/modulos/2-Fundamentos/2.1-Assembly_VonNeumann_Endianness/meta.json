@@ -1,0 +1,9 @@
+{
+    "tipo": "curso::clase",
+    "modulo": "Fundamentos Comunes",
+    "titulo": "Assembly, Von Neumann y Endianness",
+    "orden": 3,
+    "url": "https://youtu.be/dd5_Q4qnBaY?list=PLKYfwBIKMkXfVvUFICiRm-qYUkprfUAL0",
+    "duracion_min": 33,
+    "tags": ["assembly", "VonNeumann", "Endianness"]
+}
