@@ -12,8 +12,7 @@
 
 **📺 Clase:** https://youtu.be/ECUGCOEqbiI?list=PLKYfwBIKMkXfVvUFICiRm-qYUkprfUAL0
 
-Esta es la primera clase del curso en la cual presentemos el proyecto, exponemos la estructura que tendrá y cómo va a ser el flujo de nuevas clases.
-
+En esta clase prepararemos el entorno básico necesario que nos acompañará en el resto de módulos del curso.
 
 ## 📦 Recursos
 
