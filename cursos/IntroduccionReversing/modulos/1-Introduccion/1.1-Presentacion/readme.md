@@ -10,6 +10,7 @@
 
 ## 📄 Resumen
 
-**📺 Clase:** https://youtu.be/737vVq9lgyI
+**📺 Clase:** [YouTube: Qué es el reversing (y para qué sirve)? | Curso Reversing #1
+](https://youtu.be/737vVq9lgyI?list=PLKYfwBIKMkXfVvUFICiRm-qYUkprfUAL0)
 
 Esta es la primera clase del curso en la cual presentemos el proyecto, exponemos la estructura que tendrá y cómo va a ser el flujo de nuevas clases.
