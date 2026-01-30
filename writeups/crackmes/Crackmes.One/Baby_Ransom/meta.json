@@ -1,0 +1,13 @@
+{
+	"tipo": "crackme",
+	"fuente": "crackmes.one",
+	"categoria": "reversing",
+	"nombre": "Baby Ransom",
+	"dificultad": "Easy",
+	"arquitectura": "x86-64",
+	"plataforma": "Unix/Linux etc.",
+	"lenguaje": "C/C++",
+	"estado": "Solved",
+	"link_reto": "https://crackmes.one/crackme/5ec1a37533c5d449d91ae535",
+	"link_video_writeup": "https://youtu.be/PFo9DwZ-beg"
+}
