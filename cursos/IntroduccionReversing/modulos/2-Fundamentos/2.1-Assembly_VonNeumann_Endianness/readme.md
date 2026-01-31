@@ -25,11 +25,22 @@ En esta clase construimos la base mínima para que cuando empieces a desensambla
 	- [V850ES/SJ3 User's Manual](https://www.renesas.com/en/products/v850es-sj3)
 
 2. **De apoyo**
+	- [CPU Simulator](https://cpuvisualsimulator.github.io)
 	- [Stack Overflow: Are instruction set and assembly language the same thing?](https://stackoverflow.com/questions/5382130/are-instruction-set-and-assembly-language-the-same-thing)
     - [GeeksForGeeks: What is Endianness? Big-Endian & Little-Endian](https://www.geeksforgeeks.org/dsa/little-and-big-endian-mystery)
 
 3. **Para profundizar**
 	- [Compiling a C Program: Behind the Scenes](https://www.geeksforgeeks.org/c/compiling-a-c-program-behind-the-scenes)
+
+
+### Documentos
+
+- [diagrama_clase.EXCALIDRAW](resources/diagrama_clase.excalidraw) y [imagenes relacionadas](resources)
+	<p align="center">
+		<img src="resources/modelo_VonNeumann.png" alt="Endianness" width="350" />
+		<img src="resources/organizacion_memoria.png" alt="Endianness" width="350" />
+		<img src="resources/endianness.png" alt="Endianness" width="350" />
+	</p>
 
 ### Scripts
 
