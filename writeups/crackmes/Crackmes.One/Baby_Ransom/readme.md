@@ -24,9 +24,8 @@
 1. **Documentación técnica**
     - [FelixCloutier: x86 and amd64 instruction reference](https://www.felixcloutier.com/x86)
         - Referencia rápida para consultar instrucciones assembly.
-        - Aunque para la resolución de challenges de HTB es más que suficiente, es solo para tener una referencia.
+        - Aunque para la resolución de los challenges de este repositorio es más que suficiente, es solo para tener una referencia.
         - Para cualquier proyecto serio, consultar documentación oficial como, por ejemplo, el [Intel® 64 and IA-32 Architectures Software Developer Manuals](https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html).
-
     - Funciones operaciones fichero
         - Función [`fopen`](https://learn.microsoft.com/es-es/cpp/c-runtime-library/reference/fopen-wfopen) (`man fopen`)
             - Abre un archivo y devuelve un `FILE*` asociado al modo indicado (lectura/escritura/append, etc.)
