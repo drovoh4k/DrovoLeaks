@@ -49,7 +49,8 @@ Realmente vamos a explicar todo desde cero y os daré material complementario po
 | # | Clase | Estado |  Duración |
 |---|---|---|---|
 | 01 | [Assembly, Von Neumann y Endianness](modulos/2-Fundamentos/2.1-Assembly_VonNeumann_Endianness/readme.md) | ✅ Publicado | 33 min |
-| 02 | ... | ... | ... |
+| 02 | [Instrucciones Assembly](modulos/2-Fundamentos/2.2-Instrucciones_Assembly/readme.md) | ✅ Publicado | 72 min |
+| 03 | ... | ... | ... |
 
 ### Módulo 3: Ruta Linux
 
