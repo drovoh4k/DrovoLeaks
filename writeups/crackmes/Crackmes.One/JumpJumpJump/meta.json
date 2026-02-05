@@ -1,0 +1,13 @@
+{
+	"tipo": "crackme",
+	"fuente": "crackmes.one",
+	"categoria": "reversing",
+	"nombre": "JumpJumpJump",
+	"dificultad": "Easy",
+	"arquitectura": "x86-64",
+	"plataforma": "Unix/Linux etc.",
+	"lenguaje": "C/C++",
+	"estado": "Solved",
+	"link_reto": "https://crackmes.one/crackme/5c1a939633c5d41e58e005d1",
+	"link_video_writeup": "https://youtu.be/ccpKL1ffWss"
+}
