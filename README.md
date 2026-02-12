@@ -15,6 +15,9 @@ La idea es tener todo el conocimiento del canal en un lugar centralizado y orden
 - 📚 [**Cursos**](cursos/)
     - Contenido estructurado en módulos y clases: enfoque progresivo, con enlaces a playlist y recursos.
 
+- 🧑‍🏫 [**Masterclass**](masterclass/)
+    - Clases específicas para quienes ya dominan los fundamentos: se asume base previa y se entra directamente en una temática concreta con enfoque técnico y práctico.
+
 - ⛑️ [**Tutoriales**](tutoriales/)
     - Guías/tips independientes sobre conceptos o tooling.
 
