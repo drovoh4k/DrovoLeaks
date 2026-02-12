@@ -9,11 +9,17 @@ La idea es tener todo el conocimiento del canal en un lugar centralizado y orden
 
 ## 🧭 Navegación rápida
 
-- 📚 [**Cursos**](cursos/readme.md)
+- 📝 [**Writeups**](writeups/)
+  - Resoluciones de retos (crackmes, plataformas y CTFs), con scripts y recursos.
+
+- 📚 [**Cursos**](cursos/)
     - Contenido estructurado en módulos y clases: enfoque progresivo, con enlaces a playlist y recursos.
 
-- 📝 [**Writeups**](writeups/readme.md)
-  - Resoluciones de retos (crackmes, plataformas y CTFs), con scripts y recursos.
+- ⛑️ [**Tutoriales**](tutoriales/)
+    - Guías/tips independientes sobre conceptos o tooling.
+
+- 🐞 [**Vulnerabilidades**](vulnerabilidades/)
+    - CVEs concretos: análisis técnico de la falla, impacto, condiciones de explotación y una PoC guiada paso a paso.
 
 ## ⚠️ Disclaimer
 
