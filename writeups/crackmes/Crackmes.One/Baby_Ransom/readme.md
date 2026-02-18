@@ -13,7 +13,8 @@
 
 | Links | |
 |---|---|
-| 🧩 CrackMe | https://crackmes.one/crackme/5ec1a37533c5d449d91ae535 |
+| 🧩 Source | https://crackmes.one/crackme/5ec1a37533c5d449d91ae535 |
+| 🪞 Mirror | [challenge/BabyRansom.zip](challenge/BabyRansom.zip)
 | 🎥 WriteUp | https://youtu.be/PFo9DwZ-beg |
 
 

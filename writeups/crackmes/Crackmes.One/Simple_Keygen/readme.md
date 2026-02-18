@@ -13,7 +13,8 @@
 
 | Links | |
 |---|---|
-| 🧩 CrackMe | https://crackmes.one/crackme/5c2acb8933c5d46a3882b8d4 |
+| 🧩 Source | https://crackmes.one/crackme/5c2acb8933c5d46a3882b8d4 |
+| 🪞 Mirror | [challenge/SimpleKeygen.zip](challenge/SimpleKeygen.zip)
 | 🎥 WriteUp | https://youtu.be/1KwFx8UL0lY |
 
 

@@ -13,10 +13,12 @@
 
 | Links | |
 |---|---|
-| 🧩 CrackMe | https://crackmes.one/crackme/684f47bd2b84be7ea774390e |
+| 🧩 Source | https://crackmes.one/crackme/684f47bd2b84be7ea774390e |
+| 🪞 Mirror | [challenge/XORcist.zip](challenge/XORcist.zip)
 | 🎥 WriteUp | https://youtu.be/8mgKEaVgMzQ |
 | 🎥 Apoyo sobre binarios stripped | https://youtu.be/aR6MLN2pR0g |
 | 🎥 Apoyo sobre `rand() % 100` | https://youtu.be/lTQ3l8pWsa8 |
+
 
 ## 📦 Recursos
 

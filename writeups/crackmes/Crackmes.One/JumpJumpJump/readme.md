@@ -13,7 +13,8 @@
 
 | Links | |
 |---|---|
-| 🧩 CrackMe | https://crackmes.one/crackme/5c1a939633c5d41e58e005d1 |
+| 🧩 Source | https://crackmes.one/crackme/5c1a939633c5d41e58e005d1 |
+| 🪞 Mirror | [challenge/JumpJumpJump.zip](challenge/JumpJumpJump.zip)
 | 🎥 WriteUp | https://youtu.be/ccpKL1ffWss |
 
 
