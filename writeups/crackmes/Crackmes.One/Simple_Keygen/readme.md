@@ -14,7 +14,7 @@
 | Links | |
 |---|---|
 | 🧩 Source | https://crackmes.one/crackme/5c2acb8933c5d46a3882b8d4 |
-| 🪞 Mirror | [challenge/SimpleKeygen.zip](challenge/SimpleKeygen.zip)
+| 🪞 Mirror | [challenge/SimpleKeygen.zip](challenge/SimpleKeygen.zip) - Password: `crackmes.one` |
 | 🎥 WriteUp | https://youtu.be/1KwFx8UL0lY |
 
 

@@ -14,7 +14,7 @@
 | Links | |
 |---|---|
 | 🧩 Source | https://crackmes.one/crackme/5c1a939633c5d41e58e005d1 |
-| 🪞 Mirror | [challenge/JumpJumpJump.zip](challenge/JumpJumpJump.zip)
+| 🪞 Mirror | [challenge/JumpJumpJump.zip](challenge/JumpJumpJump.zip) - Password: `crackmes.one` |
 | 🎥 WriteUp | https://youtu.be/ccpKL1ffWss |
 
 
