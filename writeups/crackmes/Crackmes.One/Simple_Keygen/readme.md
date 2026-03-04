@@ -53,7 +53,10 @@
     - Diagrama utilizado durante el video para entender como funciona `argv`.
     - Disclaimer: He modificado las direcciones en naranja ligeramente para que tenga más coherencia.
     
-    ![`resources/diagrama_argv.PNG`](resources/diagrama_argv.png)
+    <p align="center">
+        <img src="resources/diagrama_argv.png" alt="Diagrama argv" width="800" />
+    </p>
+
 
 ### Snippets
 

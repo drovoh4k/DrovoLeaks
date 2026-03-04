@@ -10,8 +10,7 @@
 
 ## 📄 Resumen
 
-**📺 Clase:** [YouTube: Assembly: Solo necesitas estas 3 Categorías
-| Curso Reversing #4](https://youtu.be/v1PtzvvOeDg?list=PLKYfwBIKMkXfVvUFICiRm-qYUkprfUAL0)
+**📺 Clase:** https://youtu.be/v1PtzvvOeDg?list=PLKYfwBIKMkXfVvUFICiRm-qYUkprfUAL0
 
 En esta clase desglosamos el assembly en 3 simples categorías, vemos las instrucciones más comunes y te doy un método para poder entender cualquier instrucción nueva que te encuentres en un binario sin volverte loco.
 

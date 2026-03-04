@@ -10,7 +10,7 @@
 
 ## 📄 Resumen
 
-**📺 Clase:** [YouTube: Empiezas en Reversing? Qué instalar y cómo configurarlo | Curso Reversing #2](https://youtu.be/ECUGCOEqbiI?list=PLKYfwBIKMkXfVvUFICiRm-qYUkprfUAL0)
+**📺 Clase:** https://youtu.be/ECUGCOEqbiI?list=PLKYfwBIKMkXfVvUFICiRm-qYUkprfUAL0
 
 En esta clase prepararemos el entorno básico necesario que nos acompañará en el resto de módulos del curso.
 

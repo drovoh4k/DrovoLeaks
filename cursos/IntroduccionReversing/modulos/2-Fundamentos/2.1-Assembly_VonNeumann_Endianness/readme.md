@@ -10,7 +10,7 @@
 
 ## 📄 Resumen
 
-**📺 Clase:** [YouTube: Qué es Assembly, Modelo Von Neumann y Endianness | Curso Reversing #3](https://youtu.be/dd5_Q4qnBaY?list=PLKYfwBIKMkXfVvUFICiRm-qYUkprfUAL0)
+**📺 Clase:** https://youtu.be/dd5_Q4qnBaY?list=PLKYfwBIKMkXfVvUFICiRm-qYUkprfUAL0
 
 En esta clase construimos la base mínima para que cuando empieces a desensamblar no sientas que estás leyendo "jeroglíficos": entenderás qué es Assembly, por qué cada CPU tiene el suyo, el modelo mental Von Neumann (CPU/RAM) y, por último, el famoso endianness (little vs big endian) con una demo práctica.
 
