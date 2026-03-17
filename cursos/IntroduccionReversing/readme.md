@@ -38,20 +38,17 @@ Realmente vamos a explicar todo desde cero y os daré material complementario po
 
 ### Módulo 2: Fundamentos comunes
 
-> **⚠️ Disclaimer**: Los contenidos pueden verse modificados a lo largo de ejecucción del curso (siempre para ampliar o mejorar).
-
 *¿Qué haremos aquí?*
 - Entender una serie de conceptos básicos de arquitectura de ordenadores.
 - Ser capaces de trabajar con código assembly, tanto leerlo como crear programas básicos.
 - Entender las diferencias entre las diferentes arquitecturas y tener las herramientas para afrontar cualquier arquitectura (aunque sea un MIPS o una ESP32).
-- Presentar una serie de metodologías para analizar código, las cuales aplicaremos en posteriores módulos.
 
 | # | Clase | Estado |  Duración |
 |---|---|---|---|
 | 01 | [Assembly, Von Neumann y Endianness](modulos/2-Fundamentos/2.1-Assembly_VonNeumann_Endianness/readme.md) | ✅ Publicado | 33 min |
 | 02 | [Instrucciones Assembly](modulos/2-Fundamentos/2.2-Instrucciones_Assembly/readme.md) | ✅ Publicado | 72 min |
 | 03 | [Memoria y Stack](modulos/2-Fundamentos/2.3-Memoria_Stack/readme.md) | ✅ Publicado | 54 min |
-| ... | ... | ... | ... |
+| 04 | [Calling Conventions](modulos/2-Fundamentos/2.4-Calling_Conventions/readme.md) | ✅ Publicado | 22 min |
 
 ### Módulo 3: Ruta Linux
 
