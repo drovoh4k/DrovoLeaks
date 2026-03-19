@@ -5,7 +5,7 @@
 
 [![fuente](https://img.shields.io/badge/fuente-crackmes.one-111827?style=flat-square)]()
 [![categoria](https://img.shields.io/badge/categoria-Reversing-0969da?style=flat-square)]()
-[![dificultad](https://img.shields.io/badge/dificultad-Fácil-2ea043?style=flat-square)]()
+[![dificultad](https://img.shields.io/badge/dificultad-Media-de7d00?style=flat-square)]()
 
 [![arquitectura](https://img.shields.io/badge/arquitectura-x86--64-8250df?style=flat-square)]()
 [![plataforma](https://img.shields.io/badge/plataforma-Unix%2FLinux%20etc.-8250df?style=flat-square)]()
