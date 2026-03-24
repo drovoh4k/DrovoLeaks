@@ -31,7 +31,7 @@ Realmente vamos a explicar todo desde cero y os daré material complementario po
 | # | Clase | Estado |  Duración |
 |---|---|---|---|
 | 01 | [Introducción](clases/1-Introduccion/readme.md) | ✅ Publicado | 8 min |
-| 02 | Criptografía clásica | ⌛ En progreso | ? min |
+| 02 | [Criptografía clásica](clases/2-Cripto_Clasica/readme.md) | ✅ Publicado | 18 min |
 | 03 | Aleatoriedad | ⌛ En progreso | ? min |
 | 04 | Criptografía simétrica | ⌛ En progreso | ? min |
 | 05 | Criptografía asimétrica | ⌛ En progreso | ? min |
