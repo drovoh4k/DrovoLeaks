@@ -19,4 +19,6 @@
 
 ## 📦 Recursos
 
-> **⚠️ Disclaimer**: Aquí suelo poneros recursos, digramas, etc. Quiero sacar esos videos el mismo día que ha acabado la CTF y no tengo tiempo de hacer este apartado. Durante los próximos días lo completare. <3
+### Scripts
+
+- [`scripts/parser.PY`](scripts/parser.py)
