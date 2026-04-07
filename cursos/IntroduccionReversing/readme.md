@@ -52,14 +52,14 @@ Realmente vamos a explicar todo desde cero y os daré material complementario po
 
 ### Módulo 3: Ruta Linux
 
-> **⚠️ Disclaimer**: Los contenidos pueden verse modificados a lo largo de ejecucción del curso (siempre para ampliar o mejorar).
-
 *¿Qué haremos aquí?*
-- Aprenderemos a hacer un triage inicial, los primeros pasos para obtener información rápidamente sobre el binario objetivo.
 - Entenderemos la estructura de los ficheros ELF.
+- Aprenderemos a hacer un triage inicial, los primeros pasos para obtener información rápidamente sobre el binario objetivo.
 - Aprenderemos a usar IDA desde 0 y reversearemos varios códigos para entender todo bien.
-- Utilizaremos GDB para debuggear y aprenderemos cómo combinarlo con la información obtenida en IDA.
-- Os enseñaré muchos truquitos y consejos que me habría gustado saber en mis inicios.
+
+| # | Clase | Estado |  Duración |
+|---|---|---|---|
+| 01 | [Binarios ELF](modulos/3-Linux/3.1-Binarios_ELF/readme.md) | ✅ Publicado | 36 min |
 
 ### Módulo 4: Ruta Windows
 
