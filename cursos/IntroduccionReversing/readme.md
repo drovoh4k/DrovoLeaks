@@ -60,6 +60,7 @@ Realmente vamos a explicar todo desde cero y os daré material complementario po
 | # | Clase | Estado |  Duración |
 |---|---|---|---|
 | 01 | [Binarios ELF](modulos/3-Linux/3.1-Binarios_ELF/readme.md) | ✅ Publicado | 36 min |
+| 02 | [Metodología análisis de binarios](modulos/3-Linux/3.2-Analisis_binarios/readme.md) | ✅ Publicado | 34 min |
 
 ### Módulo 4: Ruta Windows
 
