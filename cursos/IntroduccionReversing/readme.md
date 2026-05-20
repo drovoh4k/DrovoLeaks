@@ -1,6 +1,7 @@
 # 📘 Introducción al Reversing
 
 [![YouTube](https://img.shields.io/badge/YouTube-@drovoh4k-DD0000?style=flat-square&logo=youtube&logoColor=white)](https://www.youtube.com/@drovoh4k)
+[![Discord](https://img.shields.io/badge/Discord-DrovoHub-5865F2?style=flat-square&logo=discord&logoColor=white)](https://discord.gg/kFrpheJkdN)
 
 [![tipo](https://img.shields.io/badge/tipo-curso-111827?style=flat-square)]()
 [![nivel](https://img.shields.io/badge/nivel-Principiante-2ea043?style=flat-square)]()
@@ -64,12 +65,12 @@ Realmente vamos a explicar todo desde cero y os daré material complementario po
 
 ### Módulo 4: Ruta Windows
 
-> **⚠️ Disclaimer**: Los contenidos pueden verse modificados a lo largo de ejecucción del curso (siempre para ampliar o mejorar).
+> **⚠️ Disclaimer**: Los contenidos pueden verse modificados a lo largo de ejecución del curso (siempre para ampliar o mejorar).
 
 *¿Qué haremos aquí?*
 
 - Aprenderemos a hacer un triage inicial, los primeros pasos para obtener información rápidamente sobre el binario objetivo.
 - Entenderemos la estructura de los ficheros PE.
 - Adaptaremos los conocimientos que ya sabemos de IDA a los binarios Windows.
-- Utilizaremos x64dbg para debuggear y de nuevo combinarlo con la información obtenida en iDA.
+- Utilizaremos x64dbg para debuggear y de nuevo combinarlo con la información obtenida en IDA.
 - Y por supuesto muchos truquitos y consejos.

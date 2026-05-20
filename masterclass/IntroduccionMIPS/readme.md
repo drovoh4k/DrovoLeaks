@@ -2,9 +2,11 @@
 
 <!-- CHANNEL -->
 [![YouTube](https://img.shields.io/badge/YouTube-@drovoh4k-DD0000?style=flat-square&logo=youtube&logoColor=white)](https://www.youtube.com/@drovoh4k)
+[![Discord](https://img.shields.io/badge/Discord-DrovoHub-5865F2?style=flat-square&logo=discord&logoColor=white)](https://discord.gg/kFrpheJkdN)
 
 <!-- VIDEO META -->
 [![tipo](https://img.shields.io/badge/tipo-masterclass-111827?style=flat-square)]()
+[![nivel](https://img.shields.io/badge/nivel-Principiante-2ea043?style=flat-square)]()
 [![duración](https://img.shields.io/badge/duración-52%20min-111827?style=flat-square)]()
 
 
@@ -71,7 +73,7 @@ Por último, se estudian las instrucciones esenciales: movimiento, aritmética y
 
 
 ### Snippets
-- Instalar herramientas compilación / ejecucción / debug
+- Instalar herramientas compilación / ejecución / debug
     ```
     sudo apt install gcc-mips-linux-gnu gcc-mipsel-linux-gnu
     sudo apt install qemu-system-mips qemu-user-static
@@ -79,7 +81,7 @@ Por último, se estudian las instrucciones esenciales: movimiento, aritmética y
     ```
 
 - Compilar y ejecutar manualmente
-    - Big endiann
+    - Big endian
         ```
         mips-linux-gnu-as demo.s -o demo.o
         mips-linux-gnu-ld demo.o -o demo
@@ -88,7 +90,7 @@ Por último, se estudian las instrucciones esenciales: movimiento, aritmética y
         chmod +x demo
         qemu-mips ./demo
         ```
-    - Little endiann
+    - Little endian
         ```
         mipsel-linux-gnu-as demo.s -o demo.o
         mipsel-linux-gnu-ld demo.o -o demo

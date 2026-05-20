@@ -1,10 +1,12 @@
 # RSA Weak
 
 [![YouTube](https://img.shields.io/badge/YouTube-@drovoh4k-DD0000?style=flat-square&logo=youtube&logoColor=white)](https://www.youtube.com/@drovoh4k)
-[![tipo](https://img.shields.io/badge/tipo-writeup::ctf-111827?style=flat-square)]()
+[![Discord](https://img.shields.io/badge/Discord-DrovoHub-5865F2?style=flat-square&logo=discord&logoColor=white)](https://discord.gg/kFrpheJkdN)
 
+[![tipo](https://img.shields.io/badge/tipo-writeup::ctf-111827?style=flat-square)]()
 [![fuente](https://img.shields.io/badge/fuente-Hack4u%20CTF-111827?style=flat-square)]()
-[![categoria](https://img.shields.io/badge/categoria-Cryto-ff9aa2?style=flat-square)]()
+
+[![categoria](https://img.shields.io/badge/categoria-Crypto-ff9aa2?style=flat-square)]()
 [![dificultad](https://img.shields.io/badge/dificultad-Muy%20Fácil-2ea043?style=flat-square)]()
 
 [![lenguaje](https://img.shields.io/badge/lenguaje-Python-8250df?style=flat-square)]()
@@ -19,7 +21,7 @@
 
 ### Enlaces
 
-1. **Cifrado César**
+1. **Cifrado RSA**
     - [Wikipedia: Cifrado RSA](https://es.wikipedia.org/wiki/RSA)
         - Cifrado de clave pública que utiliza una clave para cifrar y otra distinta para descifrar, basado en la dificultad de factorizar números grandes.
 
@@ -33,5 +35,5 @@
 
 ### Scripts
 
-- [`scripts/solve.PY`](scripts/solve.py)
+- [`scripts/solve.py`](scripts/solve.py)
     - Utilizado para resolver el reto.

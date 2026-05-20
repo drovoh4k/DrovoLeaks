@@ -1,6 +1,7 @@
 # 📘 Introducción a la Criptografía
 
 [![YouTube](https://img.shields.io/badge/YouTube-@drovoh4k-DD0000?style=flat-square&logo=youtube&logoColor=white)](https://www.youtube.com/@drovoh4k)
+[![Discord](https://img.shields.io/badge/Discord-DrovoHub-5865F2?style=flat-square&logo=discord&logoColor=white)](https://discord.gg/kFrpheJkdN)
 
 [![tipo](https://img.shields.io/badge/tipo-curso-111827?style=flat-square)]()
 [![nivel](https://img.shields.io/badge/nivel-Principiante-2ea043?style=flat-square)]()
@@ -26,7 +27,7 @@ Realmente vamos a explicar todo desde cero y os daré material complementario po
 
 **📺 Playlist:** https://youtube.com/playlist?list=PLKYfwBIKMkXdzMEfY64rQq-BLLubWVqm7
 
-> **⚠️ Disclaimer**: Los contenidos pueden verse modificados a lo largo de ejecucción del curso (siempre para ampliar o mejorar).
+> **⚠️ Disclaimer**: Los contenidos pueden verse modificados a lo largo de ejecución del curso (siempre para ampliar o mejorar).
 
 | # | Clase | Estado |  Duración |
 |---|---|---|---|

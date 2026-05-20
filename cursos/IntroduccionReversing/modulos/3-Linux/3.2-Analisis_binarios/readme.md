@@ -2,6 +2,7 @@
 
 <!-- CHANNEL -->
 [![YouTube](https://img.shields.io/badge/YouTube-@drovoh4k-DD0000?style=flat-square&logo=youtube&logoColor=white)](https://www.youtube.com/@drovoh4k)
+[![Discord](https://img.shields.io/badge/Discord-DrovoHub-5865F2?style=flat-square&logo=discord&logoColor=white)](https://discord.gg/kFrpheJkdN)
 
 <!-- VIDEO META -->
 [![tipo](https://img.shields.io/badge/tipo-curso%3A%3Aclase-111827?style=flat-square)]()
@@ -10,7 +11,8 @@
 
 ## 📄 Resumen
 
-**📺 Clase:** https://youtu.be/32-lNPoeRfk
+**📺 Clase:** https://youtu.be/32-lNPoeRfk?list=PLKYfwBIKMkXfVvUFICiRm-qYUkprfUAL0
+
 
 En esta clase aprendemos un método práctico de 5 fases para analizar binarios ELF en Linux de forma ordenada, empezando por identificar el archivo y sus protecciones, buscando pistas rápidas con strings, observando su comportamiento con ltrace y strace, inspeccionando su estructura interna con herramientas como readelf, nm, objdump y xxd, y terminando con una introducción al análisis interactivo con IDA y GDB.
 

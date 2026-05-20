@@ -2,6 +2,7 @@
 
 <!-- CHANNEL -->
 [![YouTube](https://img.shields.io/badge/YouTube-@drovoh4k-DD0000?style=flat-square&logo=youtube&logoColor=white)](https://www.youtube.com/@drovoh4k)
+[![Discord](https://img.shields.io/badge/Discord-DrovoHub-5865F2?style=flat-square&logo=discord&logoColor=white)](https://discord.gg/kFrpheJkdN)
 
 <!-- VIDEO META -->
 [![tipo](https://img.shields.io/badge/tipo-curso%3A%3Aclase-111827?style=flat-square)]()
@@ -10,7 +11,7 @@
 
 ## 📄 Resumen
 
-**📺 Clase:** https://youtu.be/ymEry_MtvqY
+**📺 Clase:** https://youtu.be/ymEry_MtvqY?list=PLKYfwBIKMkXfVvUFICiRm-qYUkprfUAL0
 
 En esta clase exploramos cómo funciona realmente la memoria de un proceso, revisando la memoria virtual, el memory layout y el funcionamiento del stack, incluyendo stack frames y calling conventions (cdecl) para entender cómo se organizan las funciones.
 
@@ -86,7 +87,7 @@ En esta clase exploramos cómo funciona realmente la memoria de un proceso, revi
 
 ### Demos
 
-- Demo sobre instrucciones de movimiento
+- Demo sobre memoria y stack
     - Código
         - [demos/demo.c](demos/demo.c)
     - Compilación

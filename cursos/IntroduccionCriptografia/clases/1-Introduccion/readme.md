@@ -2,6 +2,7 @@
 
 <!-- CHANNEL -->
 [![YouTube](https://img.shields.io/badge/YouTube-@drovoh4k-DD0000?style=flat-square&logo=youtube&logoColor=white)](https://www.youtube.com/@drovoh4k)
+[![Discord](https://img.shields.io/badge/Discord-DrovoHub-5865F2?style=flat-square&logo=discord&logoColor=white)](https://discord.gg/kFrpheJkdN)
 
 <!-- VIDEO META -->
 [![tipo](https://img.shields.io/badge/tipo-curso%3A%3Aclase-111827?style=flat-square)]()
@@ -10,7 +11,7 @@
 
 ## 📄 Resumen
 
-**📺 Clase:** https://www.youtube.com/watch?v=jRkJG-7-JBc&list=PLKYfwBIKMkXdzMEfY64rQq-BLLubWVqm7
+**📺 Clase:** https://youtu.be/jRkJG-7-JBc?list=PLKYfwBIKMkXdzMEfY64rQq-BLLubWVqm7
 
 En esta clase construimos la base conceptual de la criptografía: qué es realmente, qué problemas de seguridad resuelve, cómo se modelan los sistemas criptográficos y cuáles son las principales formas en las que pueden romperse.
 
@@ -35,7 +36,7 @@ En esta clase construimos la base conceptual de la criptografía: qué es realme
 3. **Principios de seguridad**
     - [Wikipedia: Kerckhoffs's principle](https://en.wikipedia.org/wiki/Kerckhoffs%27s_principle)
         - Establece un principio fundamental de la criptografía moderna: un sistema criptográfico debe seguir siendo seguro incluso si todo el sistema es público, excepto la clave.
-    - [OWSAP: A04:2025 Cryptographic Failures](https://owasp.org/Top10/2025/A04_2025-Cryptographic_Failures)
+    - [OWASP: A04:2025 Cryptographic Failures](https://owasp.org/Top10/2025/A04_2025-Cryptographic_Failures)
         - Describe la categoría Cryptographic Failures dentro del OWASP Top 10, que agrupa errores comunes relacionados con el uso incorrecto de criptografía.
 
 ### Libros

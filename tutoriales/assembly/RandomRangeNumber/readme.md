@@ -1,9 +1,10 @@
 #  ⛑️ El secreto detrás de rand() % 100
 
 [![YouTube](https://img.shields.io/badge/YouTube-@drovoh4k-DD0000?style=flat-square&logo=youtube&logoColor=white)](https://www.youtube.com/@drovoh4k)
+[![Discord](https://img.shields.io/badge/Discord-DrovoHub-5865F2?style=flat-square&logo=discord&logoColor=white)](https://discord.gg/kFrpheJkdN)
 
-![tipo](https://img.shields.io/badge/tipo-tutorial-111827?style=flat-square)
-![tema](https://img.shields.io/badge/tema-assembly-0969da?style=flat-square)
+[![tipo](https://img.shields.io/badge/tipo-tutorial-111827?style=flat-square)]()
+[![tema](https://img.shields.io/badge/tema-Assembly-0969da?style=flat-square)]()
 
 
 ## 📄 Resumen

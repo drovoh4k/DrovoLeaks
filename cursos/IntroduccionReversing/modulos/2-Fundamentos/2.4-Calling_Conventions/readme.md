@@ -2,6 +2,7 @@
 
 <!-- CHANNEL -->
 [![YouTube](https://img.shields.io/badge/YouTube-@drovoh4k-DD0000?style=flat-square&logo=youtube&logoColor=white)](https://www.youtube.com/@drovoh4k)
+[![Discord](https://img.shields.io/badge/Discord-DrovoHub-5865F2?style=flat-square&logo=discord&logoColor=white)](https://discord.gg/kFrpheJkdN)
 
 <!-- VIDEO META -->
 [![tipo](https://img.shields.io/badge/tipo-curso%3A%3Aclase-111827?style=flat-square)]()
@@ -28,7 +29,7 @@ En esta clase exploramos qué son las calling conventions y cómo determinan el 
 
 - **AMD64**
     - [System V AMD64](https://refspecs.linuxfoundation.org/elf/x86_64-abi-0.99.pdf)
-        Convención de llamada usada en sistemas Unix-like de 64 bits, donde los primeros argumentos se pasan en registros como `rdi`, `rsi`, `rdx`, `rcx`, `r8` y `r9`.
+        - Convención de llamada usada en sistemas Unix-like de 64 bits, donde los primeros argumentos se pasan en registros como `rdi`, `rsi`, `rdx`, `rcx`, `r8` y `r9`.
     - [Win64](https://learn.microsoft.com/en-us/cpp/build/x64-calling-convention)
         - Convención de llamada estándar en Windows de 64 bits, donde los primeros argumentos se pasan en `rcx`, `rdx`, `r8` y `r9`, y además se reserva shadow space en el stack.
 

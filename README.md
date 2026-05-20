@@ -1,6 +1,7 @@
 # DrovoLeaks
 
 [![YouTube](https://img.shields.io/badge/Channel-@drovoh4k-DD0000?style=flat-square&logo=youtube&logoColor=white)](https://www.youtube.com/@drovoh4k)
+[![Discord](https://img.shields.io/badge/Discord-DrovoHub-5865F2?style=flat-square&logo=discord&logoColor=white)](https://discord.gg/kFrpheJkdN)
 
 Este repositorio es el **material de apoyo** de mis vídeos de YouTube.
 
@@ -23,6 +24,9 @@ La idea es tener todo el conocimiento del canal en un lugar centralizado y orden
 
 - 🐞 [**Vulnerabilidades**](vulnerabilidades/)
     - CVEs concretos: análisis técnico de la falla, impacto, condiciones de explotación y una PoC guiada paso a paso.
+
+- 🔧 [**Varios**](varios/)
+    - Comparativas y análisis de herramientas que no encajan en una categoría específica.
 
 ## ⚠️ Disclaimer
 

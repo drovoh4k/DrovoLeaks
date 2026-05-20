@@ -2,17 +2,18 @@
 
 <!-- CHANNEL -->
 [![YouTube](https://img.shields.io/badge/YouTube-@drovoh4k-DD0000?style=flat-square&logo=youtube&logoColor=white)](https://www.youtube.com/@drovoh4k)
+[![Discord](https://img.shields.io/badge/Discord-DrovoHub-5865F2?style=flat-square&logo=discord&logoColor=white)](https://discord.gg/kFrpheJkdN)
 
 <!-- VIDEO META -->
 [![tipo](https://img.shields.io/badge/tipo-curso%3A%3Aclase-111827?style=flat-square)]()
-[![duración](https://img.shields.io/badge/duración-22%20min-111827?style=flat-square)]()
+[![duración](https://img.shields.io/badge/duración-36%20min-111827?style=flat-square)]()
 
 
 ## 📄 Resumen
 
 **📺 Clase:** https://youtu.be/v6gtt4S2LGw?list=PLKYfwBIKMkXfVvUFICiRm-qYUkprfUAL0
 
-En esta clase exploramos qué son las calling conventions y cómo determinan el paso de argumentos, el valor de retorno y la limpieza del stack, comparando las convenciones más comunes en x86 y AMD64 para aprender a identificarlas durante reversing.
+En esta clase exploramos qué son los binarios ELF, cómo están estructurados internamente (header, secciones y segmentos), cómo se cargan y mapean en memoria, cómo funciona el enlazado dinámico con GOT y PLT, y cómo interactúa un proceso con el kernel a través de las syscalls.
 
 ## 📦 Recursos
 
@@ -54,36 +55,36 @@ En esta clase exploramos qué son las calling conventions y cómo determinan el 
     
     - **Formato ELF**
     <p align="center">
-        <img src="resources/1-ELF/Definicion.png" alt="cdecl" width="300">
+        <img src="resources/1-ELF/Definicion.png" alt="Definición ELF" width="300">
     </p>
     <p align="center">
-        <img src="resources/1-ELF/Estructura_Interna.png" alt="stdcall" width="500">
+        <img src="resources/1-ELF/Estructura_Interna.png" alt="Estructura Interna ELF" width="500">
     </p>
     <p align="center">
-        <img src="resources/1-ELF/Program-Section_Header_Table.png" alt="fastcall" width="500">
+        <img src="resources/1-ELF/Program-Section_Header_Table.png" alt="Program/Section Header Table" width="500">
     </p>
 
     - **Carga y mapeo en memoria**
     <p align="center">
-        <img src="resources/2-CargaMapeo/Contexto.png" alt="fastcall" width="350">
+        <img src="resources/2-CargaMapeo/Contexto.png" alt="Contexto carga ELF" width="350">
     </p>
     <p align="center">
-        <img src="resources/2-CargaMapeo/Secuencia_Carga.png" alt="fastcall" width="300">
+        <img src="resources/2-CargaMapeo/Secuencia_Carga.png" alt="Secuencia de carga" width="300">
     </p>
     <p align="center">
-        <img src="resources/2-CargaMapeo/Memory_Layout.png" alt="fastcall" width="500">
+        <img src="resources/2-CargaMapeo/Memory_Layout.png" alt="Memory Layout" width="500">
     </p>
     <p align="center">
-        <img src="resources/2-CargaMapeo/DynamicLinking_Contexto.png" alt="fastcall" width="600">
+        <img src="resources/2-CargaMapeo/DynamicLinking_Contexto.png" alt="Dynamic Linking Contexto" width="600">
     </p>
     <p align="center">
-        <img src="resources/2-CargaMapeo/DynamicLinking_LazyBinding.png" alt="fastcall" width="600">
+        <img src="resources/2-CargaMapeo/DynamicLinking_LazyBinding.png" alt="Dynamic Linking Lazy Binding" width="600">
     </p>
 
     - **Syscall**
     <p align="center">
-        <img src="resources/3-Syscalls/Contexto.png" alt="fastcall" width="450">
+        <img src="resources/3-Syscalls/Contexto.png" alt="Syscalls Contexto" width="450">
     </p>
     <p align="center">
-        <img src="resources/3-Syscalls/Mecanismo.png" alt="fastcall" width="400">
+        <img src="resources/3-Syscalls/Mecanismo.png" alt="Syscalls Mecanismo" width="400">
     </p>
