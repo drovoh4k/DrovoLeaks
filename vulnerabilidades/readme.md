@@ -14,5 +14,6 @@ Cada entrada incluye: análisis técnico de la falla, impacto, condiciones de ex
 
 | CVE | Software | Tipo de Bug | PoC / Demo | Video |
 |---|---|---|---|---|
+| [CVE-2014-0160 (Heartbleed)](./CVE-2014-0160/readme.md) | [![software](https://img.shields.io/badge/software-OpenSSL-0969da?style=flat-square)]() | [![bug](https://img.shields.io/badge/bug-Buffer_Over--Read-e11d48?style=flat-square)]() | ✅ | https://youtu.be/rl3YGz5-R-g |
 | [CVE-2026-24061](./CVE-2026-24061/readme.md) | [![software](https://img.shields.io/badge/software-telnet-0969da?style=flat-square)]() | [![bug](https://img.shields.io/badge/bug-Auth_Bypass-e11d48?style=flat-square)]() | ✅ | https://youtu.be/_5ajr55hJIk |
 | [CVE-2026-3909 + CVE-2026-3910](./CVE-2026-3909_CVE-2026-3910/readme.md) | [![software](https://img.shields.io/badge/software-Chrome-0969da?style=flat-square)]() | [![bug](https://img.shields.io/badge/bug-RCE_Chain-e11d48?style=flat-square)]() | ❌ | https://youtu.be/txuoWT0aXlo |
