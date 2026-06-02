@@ -1,0 +1,210 @@
+////////////////////////////////////////////////////////////
+// PARTE 1. CONSTRUCCIÓN DEL ESTADO INICIAL
+////////////////////////////////////////////////////////////
+//
+// Objetivo:
+// A partir de una clave, un nonce y un contador, construir
+// el estado inicial de 16 palabras de 32 bits.
+//
+////////////////////////////////////////////////////////////
+
+//
+// BLOQUES UTILIZADOS
+//
+
+BuildInitialState(key[32 bytes], nonce[8 bytes], counter):
+
+    // BuildInitialState construye el estado inicial de Salsa20.
+    //
+    // Entrada:
+    // - key: clave de 32 bytes
+    // - nonce: número usado una vez de 8 bytes
+    // - counter: contador de bloque de 64 bits
+    //
+    // Salida:
+    // - input: estado inicial de 16 palabras de 32 bits
+    //
+    // Distribución del estado:
+    //
+    // [constante] [clave    ] [clave    ] [clave    ]
+    // [clave    ] [constante] [nonce    ] [nonce    ]
+    // [contador ] [contador ] [constante] [clave    ]
+    // [clave    ] [clave    ] [clave    ] [constante]
+
+    constants := "expand 32-byte k"
+
+    input[0]  := littleendian(constants[0..3])
+    input[1]  := littleendian(key[0..3])
+    input[2]  := littleendian(key[4..7])
+    input[3]  := littleendian(key[8..11])
+    input[4]  := littleendian(key[12..15])
+
+    input[5]  := littleendian(constants[4..7])
+    input[6]  := littleendian(nonce[0..3])
+    input[7]  := littleendian(nonce[4..7])
+    input[8]  := lower 32 bits of counter
+    input[9]  := upper 32 bits of counter
+
+    input[10] := littleendian(constants[8..11])
+    input[11] := littleendian(key[16..19])
+    input[12] := littleendian(key[20..23])
+    input[13] := littleendian(key[24..27])
+    input[14] := littleendian(key[28..31])
+
+    input[15] := littleendian(constants[12..15])
+
+    return input
+
+
+////////////////////////////////////////////////////////////
+// PARTE 2. GENERACIÓN DE KEYSTREAM
+////////////////////////////////////////////////////////////
+//
+// Objetivo:
+// Generar el flujo de bytes del keystream aplicando la
+// función de mezcla QuarterRound sobre el estado interno.
+//
+////////////////////////////////////////////////////////////
+
+//
+// BLOQUES UTILIZADOS
+//
+
+QuarterRound(a, b, c, d):
+
+    // QuarterRound aplica la función de mezcla sobre 4 palabras de 32 bits.
+    //
+    // Entrada: a, b, c, d: palabras de 32 bits
+    // Salida: a, b, c, d: palabras transformadas
+
+    b := b xor ROTL(a + d mod 2^32, 7)
+    c := c xor ROTL(b + a mod 2^32, 9)
+    d := d xor ROTL(c + b mod 2^32, 13)
+    a := a xor ROTL(d + c mod 2^32, 18)
+
+
+//
+// GENERACIÓN DE KEYSTREAM
+//
+
+Salsa20_Cipher(key[32 bytes], nonce[8 bytes]):
+
+    // Salsa20_Cipher genera el keystream de Salsa20.
+    //
+    // Entrada:
+    // - key: clave de 32 bytes
+    // - nonce: número usado una vez de 8 bytes
+    //
+    // Salida:
+    // - bloques de 64 bytes de keystream
+    //
+    // Contiene:
+    //
+    // 1. Inicialización del contador de bloques
+    // 2. Construcción del estado inicial
+    // 3. Copia del estado para trabajar sobre él
+    // 4. Aplicación de 20 rondas (10 dobles rondas)
+    // 5. Suma del estado original al estado transformado
+    // 6. Producción del keystream
+    // 7. Avance al siguiente bloque
+
+    // 1. Inicializar contador de bloques
+    counter := 0
+
+    while GeneratingOutput do
+
+        // 2. Construir el estado inicial con clave, nonce y contador
+        state := BuildInitialState(key, nonce, counter)
+
+        // 3. Copiar el estado inicial para trabajar sobre él
+        for i from 0 to 15 do
+
+            x[i] := state[i]
+
+        endfor
+
+        // 4. Aplicar 20 rondas: 10 dobles rondas
+        for round from 0 to 9 do
+
+            // 4.1 Ronda impar: operaciones sobre columnas
+            QuarterRound(x[0],  x[4],  x[8],  x[12])
+            QuarterRound(x[5],  x[9],  x[13], x[1])
+            QuarterRound(x[10], x[14], x[2],  x[6])
+            QuarterRound(x[15], x[3],  x[7],  x[11])
+
+            // 4.2 Ronda par: operaciones sobre filas
+            QuarterRound(x[0],  x[1],  x[2],  x[3])
+            QuarterRound(x[5],  x[6],  x[7],  x[4])
+            QuarterRound(x[10], x[11], x[8],  x[9])
+            QuarterRound(x[15], x[12], x[13], x[14])
+
+        endfor
+
+        // 5. Sumar el estado original al estado transformado
+        for i from 0 to 15 do
+
+            block[i] := x[i] + state[i] mod 2^32
+
+        endfor
+
+        // 6. Convertir el bloque a bytes y producir keystream
+        for i from 0 to 15 do
+
+            output block[i] as 4 little-endian bytes
+
+        endfor
+
+        // 7. Avanzar al siguiente bloque de 64 bytes
+        counter := counter + 1
+
+    endwhile
+
+
+////////////////////////////////////////////////////////////
+// PARTE 3. FUNCIONES PRINCIPALES SALSA20
+////////////////////////////////////////////////////////////
+//
+// Objetivo:
+// Definir las funciones principales de Salsa20 para cifrar y descifrar
+// usando una clave de 32 bytes y un nonce de 8 bytes.
+//
+// Esta parte utiliza:
+//
+// 1. Salsa20_Cipher
+//    - Genera el keystream de 64 bytes por bloque.
+//
+// Funciones incluidas:
+//
+// - Salsa20_Encrypt
+// - Salsa20_Decrypt
+//
+////////////////////////////////////////////////////////////
+
+Salsa20_Encrypt(message, key, nonce):
+
+    // 1. Generar el keystream.
+    keystream := Salsa20_Cipher(key, nonce)
+
+    // 2. Cifrar haciendo xor byte a byte.
+    for i from 0 to length(message) - 1 do
+
+        ciphertext[i] := message[i] xor keystream[i]
+
+    endfor
+
+    return ciphertext
+
+
+Salsa20_Decrypt(ciphertext, key, nonce):
+
+    // 1. Generar el keystream.
+    keystream := Salsa20_Cipher(key, nonce)
+
+    // 2. Descifrar haciendo xor byte a byte.
+    for i from 0 to length(ciphertext) - 1 do
+
+        plaintext[i] := ciphertext[i] xor keystream[i]
+
+    endfor
+
+    return plaintext

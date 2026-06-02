@@ -1,0 +1,149 @@
+////////////////////////////////////////////////////////////
+// PARTE 1. GENERACIÓN DEL ESTADO INTERNO
+////////////////////////////////////////////////////////////
+//
+// Objetivo:
+// A partir de una clave de longitud variable, inicializar
+// y mezclar el array de estado S de 256 bytes.
+//
+////////////////////////////////////////////////////////////
+
+//
+// INICIALIZACIÓN DEL ESTADO
+//
+
+KeySchedulingAlgorithm(key, keylength):
+
+    // KeySchedulingAlgorithm inicializa y mezcla el array de estado S.
+    //
+    // Entrada:
+    // - key: clave de longitud variable
+    // - keylength: longitud de la clave en bytes
+    //
+    // Salida:
+    // - S: array de estado mezclado de 256 bytes
+
+    // 1. Inicializar S con valores de 0 a 255
+    for i from 0 to 255 do
+
+        S[i] := i
+
+    endfor
+
+    // 2. Mezclar S usando la clave
+    j := 0
+
+    for i from 0 to 255 do
+
+        j := (j + S[i] + key[i mod keylength]) mod 256
+
+        swap S[i] and S[j]
+
+    endfor
+
+    return S
+
+
+////////////////////////////////////////////////////////////
+// PARTE 2. GENERACIÓN DE KEYSTREAM
+////////////////////////////////////////////////////////////
+//
+// Objetivo:
+// A partir del estado interno S, generar el flujo de bytes
+// del keystream.
+//
+////////////////////////////////////////////////////////////
+
+//
+// GENERACIÓN DE KEYSTREAM
+//
+
+KeyGenerationAlgorithm(S):
+
+    // KeyGenerationAlgorithm genera el keystream byte a byte.
+    //
+    // Entrada:
+    // - S: array de estado de 256 bytes
+    //
+    // Salida:
+    // - K: bytes del keystream generados
+
+    // 1. Inicializar índices
+    i := 0
+    j := 0
+
+    while GeneratingOutput do
+
+        // 2. Actualizar índices
+        i := (i + 1) mod 256
+        j := (j + S[i]) mod 256
+
+        // 3. Intercambiar posiciones de S
+        swap S[i] and S[j]
+
+        // 4. Obtener byte del keystream
+        t := (S[i] + S[j]) mod 256
+        K := S[t]
+
+        output K
+
+    endwhile
+
+
+////////////////////////////////////////////////////////////
+// PARTE 3. FUNCIONES PRINCIPALES RC4
+////////////////////////////////////////////////////////////
+//
+// Objetivo:
+// Definir las funciones principales de RC4 para cifrar y descifrar
+// usando una clave de longitud variable.
+//
+// Esta parte utiliza:
+//
+// 1. KeySchedulingAlgorithm
+//    - Inicializa y mezcla el array de estado S.
+//
+// 2. KeyGenerationAlgorithm
+//    - Genera el keystream byte a byte.
+//
+// Funciones incluidas:
+//
+// - RC4_Encrypt
+// - RC4_Decrypt
+//
+////////////////////////////////////////////////////////////
+
+RC4_Encrypt(plaintext, key):
+
+    // 1. Inicializar y mezclar el estado interno
+    S := KeySchedulingAlgorithm(key, length(key))
+
+    // 2. Generar keystream
+    keystream := KeyGenerationAlgorithm(S)
+
+    // 3. Cifrar haciendo xor byte a byte
+    for i from 0 to length(plaintext) - 1 do
+
+        ciphertext[i] := plaintext[i] xor keystream[i]
+
+    endfor
+
+    return ciphertext
+
+
+RC4_Decrypt(ciphertext, key):
+
+    // 1. Inicializar y mezclar el mismo estado interno
+    S := KeySchedulingAlgorithm(key, length(key))
+
+    // 2. Generar el mismo keystream
+    keystream := KeyGenerationAlgorithm(S)
+
+    // 3. Descifrar haciendo xor byte a byte
+    for i from 0 to length(ciphertext) - 1 do
+
+        plaintext[i] := ciphertext[i] xor keystream[i]
+
+    endfor
+
+    return plaintext
