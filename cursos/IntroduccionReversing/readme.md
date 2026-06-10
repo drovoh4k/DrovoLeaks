@@ -62,6 +62,7 @@ Realmente vamos a explicar todo desde cero y os daré material complementario po
 |---|---|---|---|
 | 01 | [Binarios ELF](modulos/3-Linux/3.1-Binarios_ELF/readme.md) | ✅ Publicado | 36 min |
 | 02 | [Metodología análisis de binarios](modulos/3-Linux/3.2-Analisis_binarios/readme.md) | ✅ Publicado | 34 min |
+| 03 | [IDA desde 0](modulos/3-Linux/3.3-IDA_desde_0/readme.md) | ✅ Publicado | 65 min |
 
 ### Módulo 4: Ruta Windows
 
