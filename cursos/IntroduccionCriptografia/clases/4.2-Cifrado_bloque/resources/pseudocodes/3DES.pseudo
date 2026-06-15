@@ -1,0 +1,151 @@
+////////////////////////////////////////////////////////////
+// PARTE 1. GENERACIÓN DE CLAVES
+////////////////////////////////////////////////////////////
+//
+// Objetivo:
+// A partir de tres claves de 64 bits, generar tres conjuntos
+// de 16 subclaves de 48 bits.
+//
+// 3DES reutiliza KeySchedulingAlgorithm de DES directamente,
+// aplicándolo de forma independiente a cada una de las tres claves.
+//
+////////////////////////////////////////////////////////////
+
+//
+// GENERACIÓN DE SUBCLAVES
+//
+
+TripleDESKeySchedule(key1[64 bits], key2[64 bits], key3[64 bits]):
+
+    // TripleDESKeySchedule genera tres conjuntos independientes
+    // de subclaves DES, uno por cada clave de la tripleta.
+    //
+    // Entrada:
+    // - key1, key2, key3: claves de 64 bits (56 bits efectivos)
+    //
+    // Salida:
+    // - keys1, keys2, keys3: conjuntos de 16 subclaves de 48 bits
+
+    // 1. Generar las 16 subclaves de K1.
+    keys1 := KeySchedulingAlgorithm(key1)
+
+    // 2. Generar las 16 subclaves de K2.
+    keys2 := KeySchedulingAlgorithm(key2)
+
+    // 3. Generar las 16 subclaves de K3.
+    keys3 := KeySchedulingAlgorithm(key3)
+
+    return keys1, keys2, keys3
+
+
+////////////////////////////////////////////////////////////
+// PARTE 2. CIFRADO Y DESCIFRADO 3DES
+////////////////////////////////////////////////////////////
+//
+// Objetivo:
+// Cifrar o descifrar bloques de 64 bits aplicando DES
+// tres veces en secuencia EDE (Encrypt-Decrypt-Encrypt).
+//
+// Esquema de cifrado:
+//
+// plaintext → E(K1) → D(K2) → E(K3) → ciphertext
+//
+// Esquema de descifrado (inverso):
+//
+// ciphertext → D(K3) → E(K2) → D(K1) → plaintext
+//
+////////////////////////////////////////////////////////////
+
+//
+// PROCESAMIENTO DE BLOQUE 3DES
+//
+
+TripleDESBlockEncrypt(block[64 bits], keys1[16], keys2[16], keys3[16]):
+
+    // TripleDESBlockEncrypt aplica la secuencia EDE sobre un bloque.
+    //
+    // Contiene:
+    //
+    // 1. Paso E: cifrar con K1
+    // 2. Paso D: descifrar con K2
+    // 3. Paso E: cifrar con K3
+
+    // 1. Paso E: cifrar con K1.
+    block := KeystreamGenerationAlgorithm(block, keys1)
+
+    // 2. Paso D: descifrar con K2.
+    reverse keys2
+    block := KeystreamGenerationAlgorithm(block, keys2)
+
+    // 3. Paso E: cifrar con K3.
+    block := KeystreamGenerationAlgorithm(block, keys3)
+
+    return block
+
+TripleDESBlockDecrypt(block[64 bits], keys1[16], keys2[16], keys3[16]):
+
+    // TripleDESBlockDecrypt aplica la secuencia DED sobre un bloque.
+    //
+    // Contiene:
+    //
+    // 1. Paso D: descifrar con K3
+    // 2. Paso E: cifrar con K2
+    // 3. Paso D: descifrar con K1
+
+    // 1. Paso D: descifrar con K3.
+    reverse keys3
+    block := KeystreamGenerationAlgorithm(block, keys3)
+
+    // 2. Paso E: cifrar con K2.
+    block := KeystreamGenerationAlgorithm(block, keys2)
+
+    // 3. Paso D: descifrar con K1.
+    reverse keys1
+    block := KeystreamGenerationAlgorithm(block, keys1)
+
+    return block
+
+
+////////////////////////////////////////////////////////////
+// PARTE 3. FUNCIONES PRINCIPALES 3DES
+////////////////////////////////////////////////////////////
+//
+// Objetivo:
+// Definir las funciones principales de 3DES para cifrar y descifrar
+// bloques de 64 bits usando tres claves de 64 bits.
+//
+// Esta parte utiliza:
+//
+// 1. TripleDESKeySchedule
+//    - Genera los tres conjuntos de 16 subclaves.
+//
+// 2. TripleDESBlockEncrypt / TripleDESBlockDecrypt
+//    - Aplica la secuencia EDE o DED al bloque de entrada.
+//
+// Funciones incluidas:
+//
+// - 3DES_Encrypt
+// - 3DES_Decrypt
+//
+////////////////////////////////////////////////////////////
+
+3DES_Encrypt(plaintext[64 bits], key1[64 bits], key2[64 bits], key3[64 bits]):
+
+    // 1. Generar los tres conjuntos de subclaves.
+    keys1, keys2, keys3 := TripleDESKeySchedule(key1, key2, key3)
+
+    // 2. Cifrar el bloque usando la secuencia EDE.
+    ciphertext := TripleDESBlockEncrypt(plaintext, keys1, keys2, keys3)
+
+    return ciphertext
+
+
+3DES_Decrypt(ciphertext[64 bits], key1[64 bits], key2[64 bits], key3[64 bits]):
+
+    // 1. Generar los tres conjuntos de subclaves.
+    keys1, keys2, keys3 := TripleDESKeySchedule(key1, key2, key3)
+
+    // 2. Descifrar el bloque usando la secuencia DED.
+    plaintext := TripleDESBlockDecrypt(ciphertext, keys1, keys2, keys3)
+
+    return plaintext

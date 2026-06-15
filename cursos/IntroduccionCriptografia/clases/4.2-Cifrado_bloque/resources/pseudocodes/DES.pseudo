@@ -1,0 +1,346 @@
+////////////////////////////////////////////////////////////
+// PARTE 1. GENERACIÓN DE CLAVES
+////////////////////////////////////////////////////////////
+//
+// Objetivo:
+// A partir de una clave original de 64 bits, generar 16 subclaves
+// de 48 bits: keys[1], keys[2], ..., keys[16].
+//
+////////////////////////////////////////////////////////////
+
+//
+// BLOQUES UTILIZADOS
+//
+
+PC1(key[64 bits]):
+
+    // PC1 elimina los bits de paridad y reordena la clave.
+    //
+    // Entrada: key de 64 bits
+    // Salida: permutedKey de 56 bits
+    //
+    // La tabla PC1 indica qué posiciones de la clave original
+    // se copian en la nueva clave de 56 bits.
+
+    for i from 1 to 56 do
+
+        permutedKey[i] := key[PC1[i]]
+
+    endfor
+
+    return permutedKey
+
+PC2(combinedKey[56 bits]):
+
+    // PC2 selecciona y reordena bits para formar una subclave.
+    //
+    // Entrada: combinedKey de 56 bits
+    // Salida: subkey de 48 bits
+    //
+    // La tabla PC2 indica qué posiciones de los 56 bits
+    // pasan a formar la subclave de 48 bits.
+
+    for i from 1 to 48 do
+
+        subkey[i] := combinedKey[PC2[i]]
+
+    endfor
+
+    return subkey
+
+//
+// GENERACIÓN DE SUBCLAVES
+//
+
+KeySchedulingAlgorithm(key[64 bits]):
+
+    // 1. Aplicar PC1: 64 bits -> 56 bits.
+    key := PC1(key)
+
+    // 2. Dividir la clave en dos mitades de 28 bits.
+    leftKey  := (key rightshift 28) and 0xFFFFFFF
+    rightKey := key and 0xFFFFFFF
+
+    // 3. Generar las 16 subclaves.
+    for i from 1 to 16 do
+
+        // 3.1 Rotar circularmente ambas mitades hacia la izquierda.
+        leftKey  := leftKey  leftrotate KEY_shift[i]
+        rightKey := rightKey leftrotate KEY_shift[i]
+
+        // 3.2 Unir ambas mitades: 28 bits + 28 bits = 56 bits.
+        combinedKey := (leftKey leftshift 28) or rightKey
+
+        // 3.3 Aplicar PC2: 56 bits -> 48 bits.
+        keys[i] := PC2(combinedKey)
+
+    endfor
+
+    return keys
+
+
+////////////////////////////////////////////////////////////
+// PARTE 2. CIFRADO Y DESCIFRADO DES
+////////////////////////////////////////////////////////////
+//
+// Objetivo:
+// Cifrar o descifrar bloques de 64 bits usando las 16 subclaves.
+//
+// Esquema general:
+//
+// plaintext → IP → 16 rondas Feistel → FP → ciphertext
+//
+////////////////////////////////////////////////////////////
+
+//
+// BLOQUES UTILIZADOS
+//
+
+IP(block[64 bits]):
+
+    // IP = Initial Permutation.
+    //
+    // Entrada: block de 64 bits
+    // Salida: permutedBlock de 64 bits
+    //
+    // La tabla IP indica cómo se reordenan los bits del bloque original.
+
+    for i from 1 to 64 do
+
+        permutedBlock[i] := block[IP[i]]
+
+    endfor
+
+    return permutedBlock
+
+FP(block[64 bits]):
+
+    // FP = Final Permutation.
+    //
+    // Entrada: block de 64 bits
+    // Salida: finalBlock de 64 bits
+    //
+    // FP es la inversa de IP.
+
+    for i from 1 to 64 do
+
+        finalBlock[i] := block[FP[i]]
+
+    endfor
+
+    return finalBlock
+
+E(R[32 bits]):
+
+    // E = Expansion.
+    //
+    // Entrada: R de 32 bits
+    // Salida: expandedR de 48 bits
+    //
+    // E expande la mitad derecha R.
+    // Algunos bits se repiten según la tabla E.
+
+    for i from 1 to 48 do
+
+        expandedR[i] := R[E[i]]
+
+    endfor
+
+    return expandedR
+
+P(block[32 bits]):
+
+    // P = Permutation interna de la función F.
+    //
+    // Entrada: block de 32 bits
+    // Salida: permutedBlock de 32 bits
+    //
+    // P reordena los bits después de las S-Boxes.
+
+    for i from 1 to 32 do
+
+        permutedBlock[i] := block[P[i]]
+
+    endfor
+
+    return permutedBlock
+
+SBoxes(input[48 bits]):
+
+    // SBoxes representa el conjunto S1, S2, ..., S8.
+    //
+    // Está dentro de la función F.
+    //
+    // Entrada total: 48 bits
+    // Se divide en 8 bloques de 6 bits.
+    // Cada S-Box transforma 6 bits en 4 bits.
+    // Salida total: 32 bits.
+
+    for i from 1 to 8 do
+
+        // 1. Tomar el bloque de 6 bits correspondiente.
+        block := input bits from position ((i - 1) * 6 + 1) to (i * 6)
+
+        // 2. Calcular la fila usando el primer y último bit.
+        rowBits := block[1] || block[6]
+        row := binaryToDecimal(rowBits)
+
+        // 3. Calcular la columna usando los 4 bits centrales.
+        columnBits := block[2] || block[3] || block[4] || block[5]
+        column := binaryToDecimal(columnBits)
+
+        // 4. Aplicar la S-Box correspondiente.
+        value := S[i][row][column]
+
+        // 5. Convertir el valor obtenido a 4 bits.
+        outputBlock[i] := decimalToBinary(value, 4 bits)
+
+    endfor
+
+    return outputBlock[1] || outputBlock[2] || outputBlock[3] || outputBlock[4] ||
+           outputBlock[5] || outputBlock[6] || outputBlock[7] || outputBlock[8]
+
+F(R[32 bits], K[48 bits]):
+
+    // F = Feistel Function.
+    //
+    // Está dentro de cada ronda Feistel.
+    //
+    // Entrada:
+    // - R: mitad derecha de 32 bits
+    // - K: subclave de la ronda, de 48 bits
+    //
+    // Salida:
+    // - result de 32 bits
+    //
+    // Estructura:
+    // F(R, K) = P(SBoxes(E(R) xor K))
+
+    expandedR := E(R)
+
+    mixed := expandedR xor K
+
+    substituted := SBoxes(mixed)
+
+    result := P(substituted)
+
+    return result
+
+FeistelRound(left[32 bits], right[32 bits], K[48 bits]):
+
+    // Una Feistel Round contiene la función F.
+    //
+    // Entrada:
+    // - left: mitad izquierda actual
+    // - right: mitad derecha actual
+    // - K: subclave de la ronda
+    //
+    // Salida:
+    // - newLeft
+    // - newRight
+    //
+    // Estructura:
+    // newLeft  = right
+    // newRight = left xor F(right, K)
+
+    newLeft := right
+
+    newRight := left xor F(right, K)
+
+    return newLeft, newRight
+
+
+//
+// GENERACIÓN DE KEYSTREAM
+//
+
+KeystreamGenerationAlgorithm(block[64 bits], keys[16]):
+
+    // KeystreamGenerationAlgorithm agrupa todo el proceso de generación
+    // del flujo interno de DES a partir de un bloque de 64 bits ya sea
+    // plaintext o ciphertext.
+    //
+    // Contiene:
+    //
+    // 1. IP
+    // 2. División en left y right
+    // 3. 16 Feistel Rounds
+    // 4. Intercambio final de mitades
+    // 5. FP
+    //
+    // Nota:
+    // - Para encriptar, keys se pasan en orden normal:
+    //   keys[1], keys[2], ..., keys[16]
+    //
+    // - Para desencriptar, keys se pasan en orden inverso:
+    //   keys[16], keys[15], ..., keys[1]
+
+    // 1. Aplicar IP al bloque de entrada.
+    block := IP(block)
+
+    // 2. Dividir el bloque en dos mitades de 32 bits.
+    left  := block rightshift 32
+    right := block and 0xFFFFFFFF
+
+    // 3. Aplicar las 16 Feistel Rounds.
+    for i from 1 to 16 do
+
+        left, right := FeistelRound(left, right, keys[i])
+
+    endfor
+
+    // 4. Intercambiar las mitades finales.
+    preoutput := (right leftshift 32) or left
+
+    // 5. Aplicar FP para obtener el bloque final.
+    outputBlock := FP(preoutput)
+
+    return outputBlock
+
+
+////////////////////////////////////////////////////////////
+// PARTE 3. FUNCIONES PRINCIPALES DES
+////////////////////////////////////////////////////////////
+//
+// Objetivo:
+// Definir las funciones principales de DES para cifrar y descifrar
+// bloques de 64 bits usando una clave original de 64 bits.
+//
+// Esta parte utiliza:
+//
+// 1. KeySchedulingAlgorithm
+//    - Genera las 16 subclaves de 48 bits.
+//
+// 2. KeystreamGenerationAlgorithm
+//    - Aplica IP, las 16 rondas Feistel y FP.
+//
+// Funciones incluidas:
+//
+// - DES_Encrypt
+// - DES_Decrypt
+//
+////////////////////////////////////////////////////////////
+
+DES_Encrypt(plaintext[64 bits], key[64 bits]):
+
+    // 1. Generar keys[1], keys[2], ..., keys[16].
+    keys := KeySchedulingAlgorithm(key)
+
+    // 2. Cifrar usando las subclaves en orden normal.
+    ciphertext := KeystreamGenerationAlgorithm(plaintext, keys)
+
+    return ciphertext
+
+
+DES_Decrypt(ciphertext[64 bits], key[64 bits]):
+
+    // 1. Generar keys[1], keys[2], ..., keys[16].
+    keys := KeySchedulingAlgorithm(key)
+
+    // 2. Invertir el orden de las subclaves.
+    reverse keys
+
+    // 3. Descifrar usando las subclaves en orden inverso.
+    plaintext := KeystreamGenerationAlgorithm(ciphertext, keys)
+
+    return plaintext

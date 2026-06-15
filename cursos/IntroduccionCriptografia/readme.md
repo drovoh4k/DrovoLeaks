@@ -35,7 +35,7 @@ Realmente vamos a explicar todo desde cero y os daré material complementario po
 | 02 | [Criptografía clásica](clases/2-Cripto_Clasica/readme.md) | ✅ Publicado | 18 min |
 | 03 | [Aleatoriedad](clases/3-Aleatoriedad/readme.md) | ✅ Publicado | 10 min |
 | 04 | [Criptografía simétrica - Cifrado en flujo](clases/4-Cripto_Simetrica/4.1-Cifrado_flujo/readme.md) | ✅ Publicado | 19 min |
-| 05 | Criptografía simétrica - Cifrado en bloque | ⌛ En progreso | ? min |
+| 05 | [Criptografía simétrica - Cifrado en bloque](clases/4-Cripto_Simetrica/4.1-Cifrado_flujo/readme.md) | ✅ Publicado | 29 min |
 | 06 | Criptografía simétrica - Modos de operación | ⌛ En progreso | ? min |
 | 07 | Criptografía asimétrica | ⌛ En progreso | ? min |
 | 08 | Hash y firmas | ⌛ En progreso | ? min |

@@ -1,0 +1,623 @@
+////////////////////////////////////////////////////////////
+// PARTE 1. GENERACIÓN DE CLAVES
+////////////////////////////////////////////////////////////
+//
+// Objetivo:
+// A partir de una clave original, generar todas las round keys
+// necesarias para cifrar o descifrar un bloque.
+//
+// AES no genera una subclave aislada por ronda, sino un array de
+// palabras de 32 bits. Cada round key está formada por 4 palabras.
+//
+////////////////////////////////////////////////////////////
+
+//
+// BLOQUES UTILIZADOS
+//
+
+AESParameters(key):
+
+    // AESParameters define los parámetros de AES según el tamaño de clave.
+    //
+    // Entrada: key de 128, 192 o 256 bits
+    //
+    // Salida:
+    // - Nk: número de palabras de 32 bits de la clave original
+    // - Nr: número de rondas de cifrado
+    //
+    // Nb siempre vale 4 porque AES trabaja con bloques de 128 bits.
+
+    Nb := 4
+
+    if key length = 128 bits then
+
+        Nk := 4
+        Nr := 10
+
+    else if key length = 192 bits then
+
+        Nk := 6
+        Nr := 12
+
+    else if key length = 256 bits then
+
+        Nk := 8
+        Nr := 14
+
+    endif
+
+    return Nb, Nk, Nr
+
+RotWord(word[4 bytes]):
+
+    // RotWord rota circularmente una palabra de 4 bytes hacia la izquierda.
+    //
+    // Entrada: word de 4 bytes
+    // Salida: word rotada de 4 bytes
+    //
+    // Ejemplo:
+    // [b0, b1, b2, b3] -> [b1, b2, b3, b0]
+
+    rotatedWord[0] := word[1]
+    rotatedWord[1] := word[2]
+    rotatedWord[2] := word[3]
+    rotatedWord[3] := word[0]
+
+    return rotatedWord
+
+SubWord(word[4 bytes]):
+
+    // SubWord aplica la S-Box de AES a cada byte de una palabra.
+    //
+    // Entrada: word de 4 bytes
+    // Salida: word sustituida de 4 bytes
+
+    for i from 0 to 3 do
+
+        result[i] := SBox[word[i]]
+
+    endfor
+
+    return result
+
+Rcon(i):
+
+    // Rcon devuelve la constante de ronda correspondiente.
+    //
+    // Entrada: índice de ronda
+    // Salida: palabra de 4 bytes
+    //
+    // Solo el primer byte de la palabra contiene la constante.
+    // Los otros tres bytes son 0x00.
+
+    return RCON[i]
+
+KeyScheduleCore(word[4 bytes], round):
+
+    // KeyScheduleCore agrupa las operaciones especiales usadas
+    // durante KeyExpansion.
+    //
+    // Contiene:
+    //
+    // 1. RotWord
+    // 2. SubWord
+    // 3. XOR con Rcon
+    //
+    // Entrada:
+    // - word: palabra de 4 bytes
+    // - round: índice usado para Rcon
+    //
+    // Salida:
+    // - word transformada
+
+    word := RotWord(word)
+
+    word := SubWord(word)
+
+    word := word xor Rcon(round)
+
+    return word
+
+
+//
+// GENERACIÓN DE ROUND KEYS
+//
+
+KeyExpansion(key):
+
+    // 1. Obtener los parámetros de AES según el tamaño de clave.
+    //
+    // Nb: número de columnas del State.
+    // Nk: número de palabras de 32 bits de la clave original.
+    // Nr: número de rondas de cifrado.
+
+    Nb, Nk, Nr := AESParameters(key)
+
+    // 2. Copiar la clave original en las primeras Nk palabras.
+    //
+    // Si AES-128, se copian 4 palabras.
+    // Si AES-192, se copian 6 palabras.
+    // Si AES-256, se copian 8 palabras.
+
+    for i from 0 to Nk - 1 do
+
+        w[i] := key bytes from position (4 * i) to (4 * i + 3)
+
+    endfor
+
+    // 3. Generar el resto de palabras.
+    //
+    // KeyExpansion genera las palabras necesarias para formar todas
+    // las round keys.
+    //
+    // Cada round key tiene 4 palabras:
+    //
+    // roundKey[r] = w[4r] || w[4r + 1] || w[4r + 2] || w[4r + 3]
+    //
+    // Como AES necesita Nr + 1 round keys, el total de palabras es:
+    //
+    // totalWords = Nb * (Nr + 1)
+    //
+    // Normalmente, cada palabra nueva se basa en la palabra anterior:
+    //
+    // temp := w[i - 1]
+    //
+    // Pero en ciertos puntos se transforma temp:
+    //
+    // - Si i mod Nk = 0:
+    //   se aplica KeyScheduleCore:
+    //   RotWord → SubWord → Rcon
+    //
+    // - Si AES-256 y i mod Nk = 4:
+    //   se aplica solo SubWord
+    //
+    // Finalmente:
+    //
+    // w[i] := w[i - Nk] xor temp
+
+    totalWords := Nb * (Nr + 1)
+
+    for i from Nk to totalWords - 1 do
+
+        temp := w[i - 1]
+
+        if i mod Nk = 0 then
+
+            temp := KeyScheduleCore(temp, i / Nk)
+
+        else if Nk > 6 and i mod Nk = 4 then
+
+            // Caso especial de AES-256.
+            // Aquí solo se aplica SubWord, sin RotWord ni Rcon.
+            temp := SubWord(temp)
+
+        endif
+
+        w[i] := w[i - Nk] xor temp
+
+    endfor
+
+    return w, Nr
+
+
+////////////////////////////////////////////////////////////
+// PARTE 2. CIFRADO AES
+////////////////////////////////////////////////////////////
+//
+// Objetivo:
+// Cifrar bloques de 128 bits usando las round keys generadas.
+//
+// Esquema general:
+//
+// plaintext → State → AddRoundKey → rondas AES → ciphertext
+//
+// Las rondas principales contienen:
+//
+// SubBytes → ShiftRows → MixColumns → AddRoundKey
+//
+// La ronda final no aplica MixColumns.
+//
+////////////////////////////////////////////////////////////
+
+//
+// BLOQUES UTILIZADOS
+//
+
+BytesToState(input[16 bytes]):
+
+    // BytesToState convierte un bloque de 128 bits en el State.
+    //
+    // Entrada: input de 16 bytes
+    // Salida: State de 4x4 bytes
+    //
+    // AES llena el State por columnas.
+
+    for column from 0 to 3 do
+        for row from 0 to 3 do
+
+            state[row][column] := input[4 * column + row]
+
+        endfor
+    endfor
+
+    return state
+
+StateToBytes(state[4][4 bytes]):
+
+    // StateToBytes convierte el State en un bloque de 16 bytes.
+    //
+    // Entrada: State de 4x4 bytes
+    // Salida: output de 16 bytes
+
+    for column from 0 to 3 do
+        for row from 0 to 3 do
+
+            output[4 * column + row] := state[row][column]
+
+        endfor
+    endfor
+
+    return output
+
+AddRoundKey(state[4][4 bytes], w, round):
+
+    // AddRoundKey mezcla el State con la round key correspondiente.
+    //
+    // Entrada:
+    // - state: matriz de 4x4 bytes
+    // - w: palabras generadas por KeyExpansion
+    // - round: número de ronda
+    //
+    // Salida:
+    // - state actualizado
+    //
+    // Operación:
+    // state byte xor round key byte
+
+    for column from 0 to 3 do
+
+        word := w[4 * round + column]
+
+        for row from 0 to 3 do
+
+            state[row][column] := state[row][column] xor word[row]
+
+        endfor
+
+    endfor
+
+    return state
+
+SubBytes(state[4][4 bytes]):
+
+    // SubBytes sustituye cada byte del State usando la S-Box de AES.
+    //
+    // Entrada: State de 4x4 bytes
+    // Salida: State sustituido
+    //
+    // Es la parte no lineal del cifrado.
+
+    for row from 0 to 3 do
+        for column from 0 to 3 do
+
+            state[row][column] := SBox[state[row][column]]
+
+        endfor
+    endfor
+
+    return state
+
+ShiftRows(state[4][4 bytes]):
+
+    // ShiftRows desplaza circularmente las filas del State.
+    //
+    // Fila 0: no se desplaza
+    // Fila 1: se desplaza 1 byte a la izquierda
+    // Fila 2: se desplaza 2 bytes a la izquierda
+    // Fila 3: se desplaza 3 bytes a la izquierda
+
+    state[0] := state[0] leftrotate 0
+    state[1] := state[1] leftrotate 1
+    state[2] := state[2] leftrotate 2
+    state[3] := state[3] leftrotate 3
+
+    return state
+
+MixColumns(state[4][4 bytes]):
+
+    // MixColumns mezcla cada columna del State.
+    //
+    // Cada columna se interpreta como un vector de 4 bytes.
+    // Se multiplica por una matriz fija en GF(2^8).
+    //
+    // Matriz usada:
+    //
+    // [02 03 01 01]
+    // [01 02 03 01]
+    // [01 01 02 03]
+    // [03 01 01 02]
+
+    for column from 0 to 3 do
+
+        a0 := state[0][column]
+        a1 := state[1][column]
+        a2 := state[2][column]
+        a3 := state[3][column]
+
+        state[0][column] := GMul(0x02, a0) xor GMul(0x03, a1) xor a2 xor a3
+        state[1][column] := a0 xor GMul(0x02, a1) xor GMul(0x03, a2) xor a3
+        state[2][column] := a0 xor a1 xor GMul(0x02, a2) xor GMul(0x03, a3)
+        state[3][column] := GMul(0x03, a0) xor a1 xor a2 xor GMul(0x02, a3)
+
+    endfor
+
+    return state
+
+GMul(a[byte], b[byte]):
+
+    // GMul multiplica dos bytes en el campo finito GF(2^8).
+    //
+    // AES usa el polinomio irreducible:
+    //
+    // x^8 + x^4 + x^3 + x + 1
+    //
+    // Durante la reducción se usa el valor 0x1B.
+
+    result := 0
+
+    for i from 0 to 7 do
+
+        if b and 1 then
+
+            result := result xor a
+
+        endif
+
+        highBitSet := a and 0x80
+
+        a := a leftshift 1
+
+        if highBitSet then
+
+            a := a xor 0x1B
+
+        endif
+
+        b := b rightshift 1
+
+    endfor
+
+    return result and 0xFF
+
+//
+// PROCESAMIENTO DE BLOQUE AES
+//
+
+AESBlockEncrypt(block[128 bits], w, Nr):
+
+    // AESBlockEncrypt agrupa el proceso completo de cifrado
+    // de un bloque AES de 128 bits.
+    //
+    // Contiene:
+    //
+    // 1. Conversión a State
+    // 2. AddRoundKey inicial
+    // 3. Nr - 1 rondas principales
+    // 4. Ronda final sin MixColumns
+    // 5. Conversión de State a bloque de salida
+
+    // 1. Convertir el bloque de entrada en State.
+    state := BytesToState(block)
+
+    // 2. Aplicar AddRoundKey inicial.
+    state := AddRoundKey(state, w, 0)
+
+    // 3. Aplicar las rondas principales.
+    for round from 1 to Nr - 1 do
+
+        state := SubBytes(state)
+
+        state := ShiftRows(state)
+
+        state := MixColumns(state)
+
+        state := AddRoundKey(state, w, round)
+
+    endfor
+
+    // 4. Aplicar la ronda final.
+    //
+    // La ronda final no incluye MixColumns.
+
+    state := SubBytes(state)
+
+    state := ShiftRows(state)
+
+    state := AddRoundKey(state, w, Nr)
+
+    // 5. Convertir el State en bloque de salida.
+    outputBlock := StateToBytes(state)
+
+    return outputBlock
+
+
+////////////////////////////////////////////////////////////
+// PARTE 3. DESCIFRADO AES
+////////////////////////////////////////////////////////////
+//
+// Objetivo:
+// Descifrar bloques de 128 bits usando las round keys generadas.
+//
+// Esquema general:
+//
+// ciphertext → State → AddRoundKey → rondas inversas → plaintext
+//
+// Las rondas inversas principales contienen:
+//
+// InvShiftRows → InvSubBytes → AddRoundKey → InvMixColumns
+//
+// La ronda final inversa no aplica InvMixColumns.
+//
+////////////////////////////////////////////////////////////
+
+//
+// BLOQUES UTILIZADOS
+//
+
+InvShiftRows(state[4][4 bytes]):
+
+    // InvShiftRows deshace ShiftRows.
+    //
+    // Fila 0: no se desplaza
+    // Fila 1: se desplaza 1 byte a la derecha
+    // Fila 2: se desplaza 2 bytes a la derecha
+    // Fila 3: se desplaza 3 bytes a la derecha
+
+    state[0] := state[0] rightrotate 0
+    state[1] := state[1] rightrotate 1
+    state[2] := state[2] rightrotate 2
+    state[3] := state[3] rightrotate 3
+
+    return state
+
+InvSubBytes(state[4][4 bytes]):
+
+    // InvSubBytes sustituye cada byte del State usando la S-Box inversa.
+    //
+    // Entrada: State de 4x4 bytes
+    // Salida: State sustituido inversamente
+
+    for row from 0 to 3 do
+        for column from 0 to 3 do
+
+            state[row][column] := InvSBox[state[row][column]]
+
+        endfor
+    endfor
+
+    return state
+
+InvMixColumns(state[4][4 bytes]):
+
+    // InvMixColumns deshace MixColumns.
+    //
+    // Cada columna se multiplica por la matriz inversa en GF(2^8).
+    //
+    // Matriz usada:
+    //
+    // [0E 0B 0D 09]
+    // [09 0E 0B 0D]
+    // [0D 09 0E 0B]
+    // [0B 0D 09 0E]
+
+    for column from 0 to 3 do
+
+        a0 := state[0][column]
+        a1 := state[1][column]
+        a2 := state[2][column]
+        a3 := state[3][column]
+
+        state[0][column] := GMul(0x0E, a0) xor GMul(0x0B, a1) xor GMul(0x0D, a2) xor GMul(0x09, a3)
+        state[1][column] := GMul(0x09, a0) xor GMul(0x0E, a1) xor GMul(0x0B, a2) xor GMul(0x0D, a3)
+        state[2][column] := GMul(0x0D, a0) xor GMul(0x09, a1) xor GMul(0x0E, a2) xor GMul(0x0B, a3)
+        state[3][column] := GMul(0x0B, a0) xor GMul(0x0D, a1) xor GMul(0x09, a2) xor GMul(0x0E, a3)
+
+    endfor
+
+    return state
+
+//
+// PROCESAMIENTO INVERSO DE BLOQUE AES
+//
+
+AESBlockDecrypt(block[128 bits], w, Nr):
+
+    // AESBlockDecrypt agrupa el proceso completo de descifrado
+    // de un bloque AES de 128 bits.
+    //
+    // Contiene:
+    //
+    // 1. Conversión a State
+    // 2. AddRoundKey con la última round key
+    // 3. Nr - 1 rondas inversas principales
+    // 4. Ronda final inversa sin InvMixColumns
+    // 5. Conversión de State a bloque de salida
+
+    // 1. Convertir el bloque de entrada en State.
+    state := BytesToState(block)
+
+    // 2. Aplicar AddRoundKey con la última round key.
+    state := AddRoundKey(state, w, Nr)
+
+    // 3. Aplicar las rondas inversas principales.
+    for round from Nr - 1 downto 1 do
+
+        state := InvShiftRows(state)
+
+        state := InvSubBytes(state)
+
+        state := AddRoundKey(state, w, round)
+
+        state := InvMixColumns(state)
+
+    endfor
+
+    // 4. Aplicar la ronda final inversa.
+    //
+    // La ronda final inversa no incluye InvMixColumns.
+
+    state := InvShiftRows(state)
+
+    state := InvSubBytes(state)
+
+    state := AddRoundKey(state, w, 0)
+
+    // 5. Convertir el State en bloque de salida.
+    outputBlock := StateToBytes(state)
+
+    return outputBlock
+
+
+////////////////////////////////////////////////////////////
+// PARTE 4. FUNCIONES PRINCIPALES AES
+////////////////////////////////////////////////////////////
+//
+// Objetivo:
+// Definir las funciones principales de AES para cifrar y descifrar
+// bloques de 128 bits usando una clave de 128, 192 o 256 bits.
+//
+// Esta parte utiliza:
+//
+// 1. KeyExpansion
+//    - Genera las round keys.
+//
+// 2. AESBlockEncrypt / AESBlockDecrypt
+//    - Aplica las rondas de AES al bloque de entrada.
+//
+// Funciones incluidas:
+//
+// - AES_Encrypt
+// - AES_Decrypt
+//
+////////////////////////////////////////////////////////////
+
+AES_Encrypt(plaintext[128 bits], key):
+
+    // 1. Generar las round keys.
+    w, Nr := KeyExpansion(key)
+
+    // 2. Cifrar el bloque usando las round keys.
+    ciphertext := AESBlockEncrypt(plaintext, w, Nr)
+
+    return ciphertext
+
+
+AES_Decrypt(ciphertext[128 bits], key):
+
+    // 1. Generar las round keys.
+    w, Nr := KeyExpansion(key)
+
+    // 2. Descifrar el bloque usando las round keys.
+    plaintext := AESBlockDecrypt(ciphertext, w, Nr)
+
+    return plaintext
