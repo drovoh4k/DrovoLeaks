@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 148" width="900" height="148" role="img" aria-label="Este repositorio ya no se actualiza. Ir a la web oficial drovoleaks.re">
+<title>Este repositorio ya no se actualiza</title>
+<desc>Aviso de repositorio archivado con un botón para ir a la web oficial drovoleaks.re</desc>
+<defs>
+<clipPath id="card"><rect x="0" y="0" width="900" height="148" rx="16"/></clipPath>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0" stop-color="#0b0f14"/>
+<stop offset="1" stop-color="#0e1621"/>
+</linearGradient>
+<linearGradient id="rail" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#f7c258"/>
+<stop offset="0.5" stop-color="#f0a52a"/>
+<stop offset="1" stop-color="#d98a12"/>
+</linearGradient>
+<linearGradient id="bleed" x1="0" y1="0" x2="1" y2="0">
+<stop offset="0" stop-color="#f0a52a" stop-opacity="0.15"/>
+<stop offset="1" stop-color="#f0a52a" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="btn" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#54e895"/>
+<stop offset="1" stop-color="#33cf79"/>
+</linearGradient>
+<radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+<stop offset="0" stop-color="#3ddc84" stop-opacity="0.2"/>
+<stop offset="1" stop-color="#3ddc84" stop-opacity="0"/>
+</radialGradient>
+<pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse">
+<path d="M28 0H0V28" fill="none" stroke="#ffffff" stroke-opacity="0.022" stroke-width="1"/>
+</pattern>
+</defs>
+<g clip-path="url(#card)">
+<rect width="900" height="148" fill="url(#bg)"/>
+<rect width="900" height="148" fill="url(#grid)"/>
+<ellipse cx="743" cy="74" rx="230" ry="105" fill="url(#glow)"/>
+<rect width="170" height="148" fill="url(#bleed)"/>
+<rect x="0.75" y="0.75" width="898.5" height="146.5" rx="15.25" fill="none" stroke="#1f2a37" stroke-width="1.5"/>
+<rect width="8" height="148" fill="url(#rail)"/>
+<g transform="translate(32,48) scale(0.72)">
+<rect width="72" height="72" rx="18" fill="#f0a52a" fill-opacity="0.10" stroke="#f0a52a" stroke-opacity="0.45" stroke-width="1.4"/>
+<path d="M36 15 L59 55 Q61 59 56 59 L16 59 Q11 59 13 55 Z" fill="#f0a52a"/>
+<rect x="33.4" y="29" width="5.2" height="17" rx="2.6" fill="#0b0f14"/>
+<circle cx="36" cy="52" r="2.9" fill="#0b0f14"/>
+</g>
+<text x="100" y="48" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" letter-spacing="2.4" font-weight="600" fill="#f0a52a">// REPOSITORIO ARCHIVADO</text>
+<text x="99" y="80" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, Roboto, Helvetica, Arial, sans-serif" font-size="24" font-weight="700" fill="#e6edf3">Este repositorio ya no se actualiza</text>
+<text x="100" y="106" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, Roboto, Helvetica, Arial, sans-serif" font-size="15" fill="#8b949e">Todo el contenido nuevo vive ahora en la web oficial</text>
+<g transform="translate(618,54)">
+<rect y="4" width="250" height="40" rx="20" fill="#178a4e"/>
+<rect width="250" height="40" rx="20" fill="url(#btn)"/>
+<text x="18" y="26" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="16" font-weight="700" fill="#06291b">Ir a drovoleaks.re</text>
+<circle cx="220" cy="20" r="12" fill="#07231a"/>
+<path d="M215 20 H225 M221.5 16 L225.5 20 L221.5 24" fill="none" stroke="#3ddc84" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</g>
+</svg>
